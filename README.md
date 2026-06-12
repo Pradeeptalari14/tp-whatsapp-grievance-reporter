@@ -17,6 +17,21 @@ Open the **[Interactive Studio](https://pradeeptalari14.github.io/portfolio/tool
 
 ---
 
+## 🏗️ Architecture Flow Diagram
+
+![SRE Architecture Flow](docs/sre_architecture_flow.png)
+
+```mermaid
+graph TD
+  User[User Query] -->|Message Hook| Chat[Telegram/WhatsApp Bot Gateways]
+  Chat -->|Route Query| API[RAG API Endpoint: https://api.openai.com/v1]
+  API -->|Fetch Vectors| DB[Vector DB Store]
+  DB -->|Context Retrieval| Prompt[Assemble Prompt with Cosine Similarity]
+  Prompt -->|Inject Instructions| LLM[LLM Output Generation]
+  LLM -->|Deliver Response| User
+  LLM -->|Drift Alert / Metrics| Observability[Slack / Alertmanager Webhooks]
+```
+
 ## 🚀 Step-by-Step Onboarding & Validation Guide
 
 Follow these SRE steps to deploy, validate, and monitor this repository's workspace configs in a local or production environment:
